@@ -11,8 +11,6 @@ use Yii;
  * @property string $estimate_id
  * @property integer $quantity
  * @property string $price
- * @property string $created
- * @property string $updated
  *
  * @property Estimate $estimate
  * @property Product $product
@@ -36,7 +34,6 @@ class ProductEstimate extends \yii\db\ActiveRecord
             [['product_id', 'estimate_id', 'quantity', 'price'], 'required'],
             [['product_id', 'estimate_id', 'quantity'], 'integer'],
             [['price'], 'number'],
-            [['created', 'updated'], 'safe'],
             [['estimate_id'], 'exist', 'skipOnError' => true, 'targetClass' => Estimate::className(), 'targetAttribute' => ['estimate_id' => 'id']],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
         ];
@@ -48,12 +45,10 @@ class ProductEstimate extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'product_id' => Yii::t('app', 'Product ID'),
-            'estimate_id' => Yii::t('app', 'Estimate ID'),
-            'quantity' => Yii::t('app', 'Quantity'),
-            'price' => Yii::t('app', 'Price'),
-            'created' => Yii::t('app', 'Created'),
-            'updated' => Yii::t('app', 'Updated'),
+            'product_id' => 'Product ID',
+            'estimate_id' => 'Estimate ID',
+            'quantity' => 'Quantity',
+            'price' => 'Price',
         ];
     }
 

@@ -10,8 +10,6 @@ use Yii;
  * @property string $id
  * @property string $description
  * @property string $deduction
- * @property string $created
- * @property string $updated
  *
  * @property ProductPromotion[] $productPromotions
  * @property Product[] $products
@@ -36,7 +34,6 @@ class Promotion extends \yii\db\ActiveRecord
         return [
             [['description', 'deduction'], 'required'],
             [['deduction'], 'number'],
-            [['created', 'updated'], 'safe'],
             [['description'], 'string', 'max' => 45],
         ];
     }
@@ -47,11 +44,9 @@ class Promotion extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'description' => Yii::t('app', 'Description'),
-            'deduction' => Yii::t('app', 'Deduction'),
-            'created' => Yii::t('app', 'Created'),
-            'updated' => Yii::t('app', 'Updated'),
+            'id' => 'ID',
+            'description' => 'Description',
+            'deduction' => 'Deduction',
         ];
     }
 

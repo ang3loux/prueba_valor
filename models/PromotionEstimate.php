@@ -10,8 +10,6 @@ use Yii;
  * @property string $promotion_id
  * @property string $estimate_id
  * @property string $price
- * @property string $created
- * @property string $updated
  *
  * @property Estimate $estimate
  * @property Promotion $promotion
@@ -35,7 +33,6 @@ class PromotionEstimate extends \yii\db\ActiveRecord
             [['promotion_id', 'estimate_id', 'price'], 'required'],
             [['promotion_id', 'estimate_id'], 'integer'],
             [['price'], 'number'],
-            [['created', 'updated'], 'safe'],
             [['estimate_id'], 'exist', 'skipOnError' => true, 'targetClass' => Estimate::className(), 'targetAttribute' => ['estimate_id' => 'id']],
             [['promotion_id'], 'exist', 'skipOnError' => true, 'targetClass' => Promotion::className(), 'targetAttribute' => ['promotion_id' => 'id']],
         ];
@@ -47,11 +44,9 @@ class PromotionEstimate extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'promotion_id' => Yii::t('app', 'Promotion ID'),
-            'estimate_id' => Yii::t('app', 'Estimate ID'),
-            'price' => Yii::t('app', 'Price'),
-            'created' => Yii::t('app', 'Created'),
-            'updated' => Yii::t('app', 'Updated'),
+            'promotion_id' => 'Promotion ID',
+            'estimate_id' => 'Estimate ID',
+            'price' => 'Price',
         ];
     }
 

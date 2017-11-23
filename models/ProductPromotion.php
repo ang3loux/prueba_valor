@@ -11,8 +11,6 @@ use Yii;
  * @property string $promotion_id
  * @property integer $quantity
  * @property string $price
- * @property string $created
- * @property string $updated
  *
  * @property Product $product
  * @property Promotion $promotion
@@ -36,7 +34,6 @@ class ProductPromotion extends \yii\db\ActiveRecord
             [['product_id', 'promotion_id', 'quantity', 'price'], 'required'],
             [['product_id', 'promotion_id', 'quantity'], 'integer'],
             [['price'], 'number'],
-            [['created', 'updated'], 'safe'],
             [['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['product_id' => 'id']],
             [['promotion_id'], 'exist', 'skipOnError' => true, 'targetClass' => Promotion::className(), 'targetAttribute' => ['promotion_id' => 'id']],
         ];
@@ -48,12 +45,10 @@ class ProductPromotion extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'product_id' => Yii::t('app', 'Product ID'),
-            'promotion_id' => Yii::t('app', 'Promotion ID'),
-            'quantity' => Yii::t('app', 'Quantity'),
-            'price' => Yii::t('app', 'Price'),
-            'created' => Yii::t('app', 'Created'),
-            'updated' => Yii::t('app', 'Updated'),
+            'product_id' => 'Product ID',
+            'promotion_id' => 'Promotion ID',
+            'quantity' => 'Quantity',
+            'price' => 'Price',
         ];
     }
 

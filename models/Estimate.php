@@ -13,8 +13,6 @@ use Yii;
  * @property string $ruc
  * @property string $total
  * @property string $tax
- * @property string $created
- * @property string $updated
  *
  * @property ProductEstimate[] $productEstimates
  * @property Product[] $products
@@ -39,7 +37,6 @@ class Estimate extends \yii\db\ActiveRecord
         return [
             [['seller_name', 'client_name', 'ruc', 'total', 'tax'], 'required'],
             [['total', 'tax'], 'number'],
-            [['created', 'updated'], 'safe'],
             [['seller_name', 'client_name', 'ruc'], 'string', 'max' => 45],
             [['ruc'], 'unique'],
         ];
@@ -51,14 +48,12 @@ class Estimate extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'seller_name' => Yii::t('app', 'Seller Name'),
-            'client_name' => Yii::t('app', 'Client Name'),
-            'ruc' => Yii::t('app', 'Ruc'),
-            'total' => Yii::t('app', 'Total'),
-            'tax' => Yii::t('app', 'Tax'),
-            'created' => Yii::t('app', 'Created'),
-            'updated' => Yii::t('app', 'Updated'),
+            'id' => 'ID',
+            'seller_name' => 'Seller Name',
+            'client_name' => 'Client Name',
+            'ruc' => 'Ruc',
+            'total' => 'Total',
+            'tax' => 'Tax',
         ];
     }
 

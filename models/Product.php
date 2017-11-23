@@ -11,8 +11,6 @@ use Yii;
  * @property string $description
  * @property string $type
  * @property string $price
- * @property string $created
- * @property string $updated
  *
  * @property ProductEstimate[] $productEstimates
  * @property Estimate[] $estimates
@@ -37,7 +35,6 @@ class Product extends \yii\db\ActiveRecord
         return [
             [['description', 'type', 'price'], 'required'],
             [['price'], 'number'],
-            [['created', 'updated'], 'safe'],
             [['description', 'type'], 'string', 'max' => 45],
         ];
     }
@@ -48,12 +45,10 @@ class Product extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'description' => Yii::t('app', 'Description'),
-            'type' => Yii::t('app', 'Type'),
-            'price' => Yii::t('app', 'Price'),
-            'created' => Yii::t('app', 'Created'),
-            'updated' => Yii::t('app', 'Updated'),
+            'id' => 'ID',
+            'description' => 'Description',
+            'type' => 'Type',
+            'price' => 'Price',
         ];
     }
 
