@@ -38,9 +38,9 @@ class m171123_025614_promotion extends Migration
             'id' => $this->primaryKey()->unsigned(),
             //columns
             'description' => $this->string(45)->notNull(),
-            'deduction' => $this->decimal(10, 2)->notNull(),
-            'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
-            'updated' => $this->timestamp()->notNull()
+            'deduction' => $this->decimal(10, 2)->notNull()
+            //'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
+            //'updated' => $this->timestamp()->notNull()
         ], $tableOptions);
     }
 

@@ -41,9 +41,9 @@ class m171123_034654_estimate extends Migration
             'client_name' => $this->string(45)->notNull(),
             'ruc' => $this->string(45)->notNull()->unique(),            
             'total' => $this->decimal(10, 2)->notNull(),
-            'tax' => $this->decimal(10, 2)->notNull(),
-            'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
-            'updated' => $this->timestamp()->notNull()
+            'tax' => $this->decimal(10, 2)->notNull()
+            //'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
+            //'updated' => $this->timestamp()->notNull()
         ], $tableOptions);
     }
 

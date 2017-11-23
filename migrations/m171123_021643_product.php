@@ -39,9 +39,9 @@ class m171123_021643_product extends Migration
             //columns
             'description' => $this->string(45)->notNull(),
             'type' => $this->string(45)->notNull(),
-            'price' => $this->decimal(10, 2)->notNull(),
-            'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
-            'updated' => $this->timestamp()->notNull()          
+            'price' => $this->decimal(10, 2)->notNull()
+            //'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
+            //'updated' => $this->timestamp()->notNull()          
         ], $tableOptions);
     }
 

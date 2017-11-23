@@ -39,8 +39,8 @@ class m171123_034932_product_promotion extends Migration
             'promotion_id' => $this->integer()->unsigned(),
             'quantity' => $this->integer()->notNull(),
             'price' => $this->decimal(10, 2)->notNull(),
-            'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
-            'updated' => $this->timestamp()->notNull(),
+            //'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
+            //'updated' => $this->timestamp()->notNull(),
             'PRIMARY KEY(product_id, promotion_id)',
         ], $tableOptions);
 

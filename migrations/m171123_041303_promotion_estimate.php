@@ -38,8 +38,8 @@ class m171123_041303_promotion_estimate extends Migration
             'promotion_id' => $this->integer()->unsigned(),
             'estimate_id' => $this->integer()->unsigned(),
             'price' => $this->decimal(10, 2)->notNull(),
-            'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
-            'updated' => $this->timestamp()->notNull(),
+            //'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
+            //'updated' => $this->timestamp()->notNull(),
             'PRIMARY KEY(promotion_id, estimate_id)',
         ], $tableOptions);
 
