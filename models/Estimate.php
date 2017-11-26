@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "estimate".
  *
  * @property string $id
+ * @property string $code
  * @property string $seller_name
  * @property string $client_name
  * @property string $ruc
@@ -35,9 +36,11 @@ class Estimate extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['seller_name', 'client_name', 'ruc', 'total', 'tax'], 'required'],
+            [['code', 'seller_name', 'client_name', 'ruc', 'total', 'tax'], 'required'],
             [['total', 'tax'], 'number'],
+            [['code'], 'string', 'max' => 20],
             [['seller_name', 'client_name', 'ruc'], 'string', 'max' => 45],
+            [['code'], 'unique'],
             [['ruc'], 'unique'],
         ];
     }
@@ -49,6 +52,7 @@ class Estimate extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'code' => 'Code',
             'seller_name' => 'Seller Name',
             'client_name' => 'Client Name',
             'ruc' => 'Ruc',

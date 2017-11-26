@@ -44,9 +44,9 @@ class PromotionEstimate extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'promotion_id' => 'Promotion ID',
-            'estimate_id' => 'Estimate ID',
-            'price' => 'Price',
+            'promotion_id' => 'Paquete',
+            'estimate_id' => 'Cotización',
+            'price' => 'Precio',
         ];
     }
 

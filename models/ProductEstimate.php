@@ -45,10 +45,10 @@ class ProductEstimate extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'product_id' => 'Product ID',
-            'estimate_id' => 'Estimate ID',
-            'quantity' => 'Quantity',
-            'price' => 'Price',
+            'product_id' => 'Producto',
+            'estimate_id' => 'Cotización',
+            'quantity' => 'Cantidad',
+            'price' => 'Precio',
         ];
     }
 

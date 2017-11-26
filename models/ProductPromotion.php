@@ -45,10 +45,10 @@ class ProductPromotion extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'product_id' => 'Product ID',
-            'promotion_id' => 'Promotion ID',
-            'quantity' => 'Quantity',
-            'price' => 'Price',
+            'product_id' => 'Producto',
+            'promotion_id' => 'Paquete',
+            'quantity' => 'Cantidad',
+            'price' => 'Precio',
         ];
     }
 

@@ -37,6 +37,7 @@ class m171123_034654_estimate extends Migration
         $this->createTable('estimate', [
             'id' => $this->primaryKey()->unsigned(),
             //columns
+            'code' => $this->string(20)->notNull()->unique(),
             'seller_name' => $this->string(45)->notNull(),
             'client_name' => $this->string(45)->notNull(),
             'ruc' => $this->string(45)->notNull()->unique(),            

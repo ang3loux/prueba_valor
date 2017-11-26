@@ -32,8 +32,8 @@ class Promotion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description', 'deduction'], 'required'],
-            [['deduction'], 'number'],
+            [['description', 'deduction', 'total'], 'required'],
+            [['deduction', 'total'], 'number'],
             [['description'], 'string', 'max' => 45],
         ];
     }
@@ -45,8 +45,9 @@ class Promotion extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'description' => 'Description',
-            'deduction' => 'Deduction',
+            'description' => 'Descripción',
+            'deduction' => 'Descuento',
+            'total' => 'Total'
         ];
     }
 
