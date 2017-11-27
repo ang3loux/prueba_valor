@@ -56,7 +56,7 @@ class Estimate extends \yii\db\ActiveRecord
             'seller_name' => 'Nombre del vendedor',
             'client_name' => 'Nombre del cliente',
             'ruc' => 'RUC',
-            'total' => 'Total',
+            'total' => 'Total $',
             'tax' => '% Impuesto',
         ];
     }

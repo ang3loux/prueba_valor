@@ -48,7 +48,7 @@ class ProductPromotion extends \yii\db\ActiveRecord
             'product_id' => 'Producto',
             'promotion_id' => 'Paquete',
             'quantity' => 'Cantidad',
-            'price' => 'Precio',
+            'price' => 'Precio $',
         ];
     }
 

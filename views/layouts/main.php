@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => "Cotizador",
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -41,18 +41,6 @@ AppAsset::register($this);
             ['label' => 'Productos', 'url' => ['/product/index']],
             ['label' => 'Paquetes', 'url' => ['/promotion/index']],
             ['label' => 'Cotizaciones', 'url' => ['/estimate/index']],
-            // Yii::$app->user->isGuest ? (
-            //     ['label' => 'Login', 'url' => ['/site/login']]
-            // ) : (
-            //     '<li>'
-            //     . Html::beginForm(['/site/logout'], 'post')
-            //     . Html::submitButton(
-            //         'Logout (' . Yii::$app->user->identity->username . ')',
-            //         ['class' => 'btn btn-link logout']
-            //     )
-            //     . Html::endForm()
-            //     . '</li>'
-            // )
         ],
     ]);
     NavBar::end();
@@ -69,9 +57,11 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Grupo Valor <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right">
+            <a href="https://www.linkedin.com/in/angelo-zambrano-lopez-02a032135">Desarrollado por Angelo Zambrano</a>
+        </p>
     </div>
 </footer>
 

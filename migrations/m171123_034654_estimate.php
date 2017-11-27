@@ -10,7 +10,7 @@ class m171123_034654_estimate extends Migration
     /**
      * @inheritdoc
      */
-    // public function safeUp()
+    // public function up()
     // {
 
     // }
@@ -18,7 +18,7 @@ class m171123_034654_estimate extends Migration
     /**
      * @inheritdoc
      */
-    // public function safeDown()
+    // public function down()
     // {
     //     echo "m171123_021643_product cannot be reverted.\n";
 
@@ -27,7 +27,7 @@ class m171123_034654_estimate extends Migration
 
     
     // Use up()/down() to run migration code without a transaction.
-    public function up()
+    public function safeUp()
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -46,10 +46,17 @@ class m171123_034654_estimate extends Migration
             //'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             //'updated' => $this->timestamp()->notNull()
         ], $tableOptions);
+
+        $this->batchInsert('estimate', ['code', 'seller_name', 'client_name', 'ruc', 'total', 'tax'], [
+            ['COD1', 'Julian Martinez', 'Jose Zambrano', 'ASDF123', '1145.38', '16'],
+            ['COD2', 'Julian Martinez', 'Naibe Melo', 'FDSA321', '1199.74', '14'],
+        ]);
     }
 
-    public function down()
+    public function safeDown()
     {
+        $this->delete('estimate');
+
         $this->dropTable('estimate');
     }
 }

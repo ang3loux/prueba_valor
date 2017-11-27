@@ -46,7 +46,7 @@ class PromotionEstimate extends \yii\db\ActiveRecord
         return [
             'promotion_id' => 'Paquete',
             'estimate_id' => 'Cotización',
-            'price' => 'Precio',
+            'price' => 'Precio $',
         ];
     }
 

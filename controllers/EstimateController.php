@@ -6,8 +6,10 @@ use Yii;
 use app\models\Estimate;
 use app\models\EstimateSearch;
 use app\models\ProductEstimate;
-use app\models\Model;
+use app\models\PromotionEstimate;
 use app\models\Product;
+use app\models\Promotion;
+use app\models\Model;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -68,18 +70,22 @@ class EstimateController extends Controller
     {
         $model = new Estimate();
         $modelsProductEstimate = [new ProductEstimate];
+        $modelsPromotionEstimate = [new PromotionEstimate];
 
         if ($model->load(Yii::$app->request->post())) {
             $modelsProductEstimate = Model::createMultiple(ProductEstimate::classname());
             Model::loadMultiple($modelsProductEstimate, Yii::$app->request->post());
 
+            $modelsPromotionEstimate = Model::createMultiple(PromotionEstimate::classname());
+            Model::loadMultiple($modelsPromotionEstimate, Yii::$app->request->post());
+            
             $transaction = \Yii::$app->db->beginTransaction();
             try {
                 if ($flag = $model->save(false)) {
-                    $total = 0;
+                    $totalProduct = 0;
                     foreach ($modelsProductEstimate as $objProductEstimate) {
                         $product = Product::findOne($objProductEstimate->product_id);
-                        $total += $product->price * $objProductEstimate->quantity;
+                        $totalProduct += $product->price * $objProductEstimate->quantity;
                         $objProductEstimate->estimate_id = $model->id;
                         $objProductEstimate->price = $product->price;
                         if (! ($flag = $objProductEstimate->save(false))) {
@@ -87,8 +93,20 @@ class EstimateController extends Controller
                             break;
                         }
                     }
+                    $totalPromotion = 0;
+                    foreach ($modelsPromotionEstimate as $objPromotionEstimate) {
+                        $promotion = Promotion::findOne($objPromotionEstimate->promotion_id);
+                        $totalPromotion += $promotion->total;
+                        $objPromotionEstimate->estimate_id = $model->id;
+                        $objPromotionEstimate->price = $promotion->total;
+                        if (! ($flag = $objPromotionEstimate->save(false))) {
+                            $transaction->rollBack();
+                            break;
+                        }
+                    }
                 }
                 if ($flag) {
+                    $total = $totalProduct + $totalPromotion;
                     $model->total = $total + ($total * $model->tax / 100);
                     $model->code = "COD" . $model->id;
                     $model->save(false);
@@ -101,7 +119,8 @@ class EstimateController extends Controller
         }
         return $this->render('create', [
             'model' => $model,
-            'modelsProductEstimate' => (empty($modelsProductEstimate)) ? [new ProductEstimate] : $modelsProductEstimate
+            'modelsProductEstimate' => (empty($modelsProductEstimate)) ? [new ProductEstimate] : $modelsProductEstimate,
+            'modelsPromotionEstimate' => (empty($modelsPromotionEstimate)) ? [new PromotionEstimate] : $modelsPromotionEstimate
         ]);
     }
 

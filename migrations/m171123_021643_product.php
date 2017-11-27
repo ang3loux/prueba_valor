@@ -10,7 +10,7 @@ class m171123_021643_product extends Migration
     /**
      * @inheritdoc
      */
-    // public function safeUp()
+    // public function up()
     // {
 
     // }
@@ -18,7 +18,7 @@ class m171123_021643_product extends Migration
     /**
      * @inheritdoc
      */
-    // public function safeDown()
+    // public function down()
     // {
     //     echo "m171123_021643_product cannot be reverted.\n";
 
@@ -27,7 +27,7 @@ class m171123_021643_product extends Migration
 
     
     // Use up()/down() to run migration code without a transaction.
-    public function up()
+    public function safeUp()
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -43,10 +43,25 @@ class m171123_021643_product extends Migration
             //'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             //'updated' => $this->timestamp()->notNull()          
         ], $tableOptions);
+
+        $this->batchInsert('product', ['description', 'type', 'price'], [
+            ['GPU', 'Hardware', '230'],
+            ['CPU', 'Hardware', '270'],
+            ['RAM', 'Hardware', '120'],
+            ['Motherboard', 'Hardware', '190'],
+            ['Power supply', 'Hardware', '80'],
+            ['Case', 'Hardware', '90'],
+            ['Windows', 'Software', '70'],
+            ['Microsoft Office', 'Software', '55'],
+            ['Adobe Photoshop', 'Software', '80'],
+            ['Corel Draw', 'Software', '75'],
+        ]);
     }
 
-    public function down()
+    public function safeDown()
     {
+        $this->delete('product');
+
         $this->dropTable('product');
     }
     

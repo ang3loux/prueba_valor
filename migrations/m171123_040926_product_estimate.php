@@ -10,7 +10,7 @@ class m171123_040926_product_estimate extends Migration
     /**
      * @inheritdoc
      */
-    // public function safeUp()
+    // public function up()
     // {
 
     // }
@@ -18,7 +18,7 @@ class m171123_040926_product_estimate extends Migration
     /**
      * @inheritdoc
      */
-    // public function safeDown()
+    // public function down()
     // {
     //     echo "m171123_021643_product cannot be reverted.\n";
 
@@ -27,7 +27,7 @@ class m171123_040926_product_estimate extends Migration
 
     
     // Use up()/down() to run migration code without a transaction.
-    public function up()
+    public function safeUp()
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -44,6 +44,13 @@ class m171123_040926_product_estimate extends Migration
             'PRIMARY KEY(product_id, estimate_id)',
         ], $tableOptions);
 
+        $this->batchInsert('product_estimate', ['product_id', 'estimate_id', 'quantity', 'price'], [
+            ['3', '2', '1', '120'],
+            ['7', '1', '1', '70'],
+            ['7', '2', '1', '70'],
+            ['8', '1', '1', '55'],
+        ]);
+
         $this->createIndex('idx_product_estimate_product_id_product', 'product_estimate', 'product_id');
         $this->addForeignKey('fk_product_estimate_product_id_product', 'product_estimate', 'product_id', 'product', 'id', 'restrict', 'cascade');
 
@@ -51,8 +58,10 @@ class m171123_040926_product_estimate extends Migration
         $this->addForeignKey('fk_product_estimate_estimate_id_estimate', 'product_estimate', 'estimate_id', 'estimate', 'id', 'restrict', 'cascade');
     }
 
-    public function down()
+    public function safeDown()
     {
+        $this->delete('product_estimate');
+
         $this->dropForeignKey('fk_product_estimate_product_id_product', 'product_estimate');
         $this->dropIndex('idx_product_estimate_product_id_product', 'product_estimate');
         $this->dropForeignKey('fk_product_estimate_estimate_id_estimate', 'product_estimate');

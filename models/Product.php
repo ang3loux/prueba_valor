@@ -48,7 +48,7 @@ class Product extends \yii\db\ActiveRecord
             'id' => 'ID',
             'description' => 'Descripción',
             'type' => 'Tipo',
-            'price' => 'Precio',
+            'price' => 'Precio $',
         ];
     }
 

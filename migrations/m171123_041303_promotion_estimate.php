@@ -10,7 +10,7 @@ class m171123_041303_promotion_estimate extends Migration
     /**
      * @inheritdoc
      */
-    // public function safeUp()
+    // public function up()
     // {
 
     // }
@@ -18,7 +18,7 @@ class m171123_041303_promotion_estimate extends Migration
     /**
      * @inheritdoc
      */
-    // public function safeDown()
+    // public function down()
     // {
     //     echo "m171123_021643_promotion cannot be reverted.\n";
 
@@ -27,7 +27,7 @@ class m171123_041303_promotion_estimate extends Migration
 
     
     // Use up()/down() to run migration code without a transaction.
-    public function up()
+    public function safeUp()
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -43,6 +43,11 @@ class m171123_041303_promotion_estimate extends Migration
             'PRIMARY KEY(promotion_id, estimate_id)',
         ], $tableOptions);
 
+        $this->batchInsert('promotion_estimate', ['promotion_id', 'estimate_id', 'price'], [
+            ['1', '1', '862.40'],
+            ['1', '2', '862.40'],
+        ]);
+
         $this->createIndex('idx_promotion_estimate_promotion_id_promotion', 'promotion_estimate', 'promotion_id');
         $this->addForeignKey('fk_promotion_estimate_promotion_id_promotion', 'promotion_estimate', 'promotion_id', 'promotion', 'id', 'restrict', 'cascade');
 
@@ -50,8 +55,10 @@ class m171123_041303_promotion_estimate extends Migration
         $this->addForeignKey('fk_promotion_estimate_estimate_id_estimate', 'promotion_estimate', 'estimate_id', 'estimate', 'id', 'restrict', 'cascade');
     }
 
-    public function down()
+    public function safeDown()
     {
+        $this->delete('promotion_estimate');
+
         $this->dropForeignKey('fk_promotion_estimate_promotion_id_promotion', 'promotion_estimate');
         $this->dropIndex('idx_promotion_estimate_promotion_id_promotion', 'promotion_estimate');
         $this->dropForeignKey('fk_promotion_estimate_estimate_id_estimate', 'promotion_estimate');

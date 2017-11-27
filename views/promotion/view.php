@@ -32,7 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>#</th>
                     <th>Descripción</th>
                     <th>Tipo</th>
-                    <th>Precio</th>
+                    <th>Precio $</th>
+                    <th>Cantidad</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,6 +53,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         </td>
                         <td>
                             <?= $value->price ?>
+                        </td>
+                        <td>
+                            <?= $value->quantity ?>
                         </td>
                     </tr>
                 <?php

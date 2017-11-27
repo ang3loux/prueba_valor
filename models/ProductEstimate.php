@@ -48,7 +48,7 @@ class ProductEstimate extends \yii\db\ActiveRecord
             'product_id' => 'Producto',
             'estimate_id' => 'Cotización',
             'quantity' => 'Cantidad',
-            'price' => 'Precio',
+            'price' => 'Precio $',
         ];
     }
 

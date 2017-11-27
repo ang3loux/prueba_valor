@@ -10,7 +10,7 @@ class m171123_025614_promotion extends Migration
     /**
      * @inheritdoc
      */
-    // public function safeUp()
+    // public function up()
     // {
 
     // }
@@ -18,7 +18,7 @@ class m171123_025614_promotion extends Migration
     /**
      * @inheritdoc
      */
-    // public function safeDown()
+    // public function down()
     // {
     //     echo "m171123_021643_product cannot be reverted.\n";
 
@@ -27,7 +27,7 @@ class m171123_025614_promotion extends Migration
 
     
     // Use up()/down() to run migration code without a transaction.
-    public function up()
+    public function safeUp()
     {
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
@@ -43,10 +43,17 @@ class m171123_025614_promotion extends Migration
             //'created' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             //'updated' => $this->timestamp()->notNull()
         ], $tableOptions);
+
+        $this->batchInsert('promotion', ['description', 'deduction', 'total'], [
+            ['Combo de Hardware', '12', '862.40'],
+            ['Combo de Edición fotográfica', '18', '265.50'],
+        ]);
     }
 
-    public function down()
+    public function safeDown()
     {
+        $this->delete('promotion');
+
         $this->dropTable('promotion');
     }
 }

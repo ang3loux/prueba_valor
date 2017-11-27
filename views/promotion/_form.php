@@ -89,18 +89,18 @@ $form_script = <<< JS
 			});
 
 			$(".dynamicform_wrapper").on("beforeDelete", function(e, item) {
-			    if (! confirm("Are you sure you want to delete this item?")) {
+			    if (! confirm("¿Está seguro que desea eliminar este item?")) {
 			        return false;
 			    }
 			    return true;
 			});
 
 			$(".dynamicform_wrapper").on("afterDelete", function(e) {
-			    console.log("Deleted item!");
+			    console.log("Item eliminado.");
 			});
 
 			$(".dynamicform_wrapper").on("limitReached", function(e, item) {
-			    alert("Limit reached");
+			    alert("Límite de items alcanzado.");
 			});
 		})
 JS;

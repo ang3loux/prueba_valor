@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'id',
             'description',
             'deduction',
+            // 'total',
 
             ['class' => 'yii\grid\ActionColumn',
              'template' => '{view}']
