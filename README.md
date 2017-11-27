@@ -9,8 +9,8 @@
 REQUERIMIENTOS
 ------------
 
-XAMPP con Apache y MySQL.
-Composer
+ * XAMPP con Apache y MySQL.
+ * Composer
 
 
 INSTALACIÓN
