@@ -14,9 +14,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+	<div class="row">
+		<div class="col-md-6">
+			<?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
+		</div>
+		<div class="col-md-6">
+			<?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+		</div>
+	</div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -18,9 +18,14 @@ use app\models\Promotion;
 
     <?= $form->field($model, 'seller_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'client_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ruc')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-md-6">
+            <?= $form->field($model, 'client_name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-md-6">
+            <?= $form->field($model, 'ruc')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
     <?= $form->field($model, 'tax')->textInput(['maxlength' => true]) ?>
 
