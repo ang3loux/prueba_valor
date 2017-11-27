@@ -52,12 +52,12 @@ class Estimate extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'code' => 'Code',
-            'seller_name' => 'Seller Name',
-            'client_name' => 'Client Name',
-            'ruc' => 'Ruc',
+            'code' => 'Código',
+            'seller_name' => 'Nombre del vendedor',
+            'client_name' => 'Nombre del cliente',
+            'ruc' => 'RUC',
             'total' => 'Total',
-            'tax' => 'Tax',
+            'tax' => '% Impuesto',
         ];
     }
 

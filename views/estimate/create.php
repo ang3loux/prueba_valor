@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Estimate */
 
-$this->title = 'Create Estimate';
-$this->params['breadcrumbs'][] = ['label' => 'Estimates', 'url' => ['index']];
+$this->title = 'Crear Cotización';
+$this->params['breadcrumbs'][] = ['label' => 'Cotizaciones', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="estimate-create">
@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'modelsProductEstimate' => $modelsProductEstimate
     ]) ?>
 
 </div>

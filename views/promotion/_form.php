@@ -13,7 +13,7 @@ use app\models\Product;
 
 <div class="promotion-form">
 
-    <?php $form = ActiveForm::begin(['id'=>'dynamic-form']); ?>
+    <?php $form = ActiveForm::begin(['id'=>'dynamic-form-promotion']); ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
@@ -22,7 +22,7 @@ use app\models\Product;
     <div class="panel panel-default">
         <div class="panel-heading"><h4><i class="glyphicon glyphicon-envelope"></i> Añadir Productos</h4></div>
         <div class="panel-body">
-             <?php DynamicFormWidget::begin([
+            <?php DynamicFormWidget::begin([
                 'widgetContainer' => 'dynamicform_wrapper', // required: only alphanumeric characters plus "_" [A-Za-z0-9_]
                 'widgetBody' => '.container-items', // required: css class selector
                 'widgetItem' => '.item', // required: css class
@@ -31,15 +31,15 @@ use app\models\Product;
                 'insertButton' => '.add-item', // css class
                 'deleteButton' => '.remove-item', // css class
                 'model' => $modelsProductPromotion[0],
-                'formId' => 'dynamic-form',
+                'formId' => 'dynamic-form-promotion',
                 'formFields' => [
-                    'quantity',
                     'product_id',
+                    'quantity',                    
                 ],
             ]); ?>
 
             <div class="container-items"><!-- widgetContainer -->
-            <?php foreach ($modelsProductPromotion as $i => $modelProductPromotion): ?>
+            <?php foreach ($modelsProductPromotion as $i => $objProductPromotion): ?>
                 <div class="item panel panel-default"><!-- widgetBody -->
                     <div class="panel-heading">
                         <h3 class="panel-title pull-left">Producto</h3>
@@ -52,12 +52,12 @@ use app\models\Product;
                     <div class="panel-body"> 
                         <div class="row">
                             <div class="col-sm-6">
-                                <?= $form->field($modelProductPromotion, "[{$i}]product_id")->dropDownList(ArrayHelper::map(Product::find()->all(),'id','description'),
+                                <?= $form->field($objProductPromotion, "[{$i}]product_id")->dropDownList(ArrayHelper::map(Product::find()->all(),'id','description'),
                                 	['prompt'=>'Seleccionar Producto']) 
                                 ?>
                             </div>
                             <div class="col-sm-6">
-                                <?= $form->field($modelProductPromotion, "[{$i}]quantity")->textInput(['maxlength' => true]) ?>
+                                <?= $form->field($objProductPromotion, "[{$i}]quantity")->textInput(['maxlength' => true]) ?>
                             </div>
                         </div><!-- .row -->
                     </div>

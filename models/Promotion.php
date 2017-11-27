@@ -46,7 +46,7 @@ class Promotion extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'description' => 'Descripción',
-            'deduction' => 'Descuento',
+            'deduction' => '% Descuento',
             'total' => 'Total'
         ];
     }

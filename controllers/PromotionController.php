@@ -6,11 +6,11 @@ use Yii;
 use app\models\Promotion;
 use app\models\PromotionSearch;
 use app\models\ProductPromotion;
+use app\models\Model;
+use app\models\Product;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\Model;
-use app\models\Product;
 
 /**
  * PromotionController implements the CRUD actions for Promotion model.

@@ -5,6 +5,9 @@ namespace app\controllers;
 use Yii;
 use app\models\Estimate;
 use app\models\EstimateSearch;
+use app\models\ProductEstimate;
+use app\models\Model;
+use app\models\Product;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -64,14 +67,42 @@ class EstimateController extends Controller
     public function actionCreate()
     {
         $model = new Estimate();
+        $modelsProductEstimate = [new ProductEstimate];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post())) {
+            $modelsProductEstimate = Model::createMultiple(ProductEstimate::classname());
+            Model::loadMultiple($modelsProductEstimate, Yii::$app->request->post());
+
+            $transaction = \Yii::$app->db->beginTransaction();
+            try {
+                if ($flag = $model->save(false)) {
+                    $total = 0;
+                    foreach ($modelsProductEstimate as $objProductEstimate) {
+                        $product = Product::findOne($objProductEstimate->product_id);
+                        $total += $product->price * $objProductEstimate->quantity;
+                        $objProductEstimate->estimate_id = $model->id;
+                        $objProductEstimate->price = $product->price;
+                        if (! ($flag = $objProductEstimate->save(false))) {
+                            $transaction->rollBack();
+                            break;
+                        }
+                    }
+                }
+                if ($flag) {
+                    $model->total = $total + ($total * $model->tax / 100);
+                    $model->code = "COD" . $model->id;
+                    $model->save(false);
+                    $transaction->commit();
+                    return $this->redirect(['view', 'id' => $model->id]);
+                }
+            } catch (Exception $e) {
+                $transaction->rollBack();
+            }          
         }
+        return $this->render('create', [
+            'model' => $model,
+            'modelsProductEstimate' => (empty($modelsProductEstimate)) ? [new ProductEstimate] : $modelsProductEstimate
+        ]);
     }
 
     /**

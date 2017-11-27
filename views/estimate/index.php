@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\EstimateSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Estimates';
+$this->title = 'Cotizaciones';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="estimate-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Estimate', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Cotización', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
             'code',
             'seller_name',
             'client_name',
@@ -32,7 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'total',
             // 'tax',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+             'template' => '{view}']
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

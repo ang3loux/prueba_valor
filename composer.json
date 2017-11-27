@@ -19,7 +19,9 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "kartik-v/yii2-widget-select2": "@dev",
-        "wbraganca/yii2-dynamicform": "*"
+        "symfony/dom-crawler": "2.8",
+        "symfony/css-selector": "2.8",
+        "wbraganca/yii2-dynamicform": "2.0.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
